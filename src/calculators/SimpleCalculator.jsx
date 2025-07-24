@@ -387,7 +387,17 @@ const CalculatorKeypad = () => {
           value={"0"}
           displayValue={"0"}
         />
-        <ValueButton buttonText={"."} value={"."} displayValue={"."} />
+        <ActionButton
+          buttonText={"."}
+          inputKey={"."}
+          action={() => {
+            if (!(equation.join("") + ".").match(/(?:^|[^0-9.])\d*\.\d*\.$/)) {
+              dispatch(addEquationElement("."));
+              dispatch(addDisplayEquationElement("."));
+            }
+          }}
+          displayValue={"."}
+        />
         <ActionButton
           buttonText={"="}
           inputKey={"Enter"}
